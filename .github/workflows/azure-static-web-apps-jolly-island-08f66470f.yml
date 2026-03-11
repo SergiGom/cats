@@ -32,6 +32,8 @@ steps:
     run: npm install
 
   - name: Build project
+    env:
+    VITE_AZURE_STORAGE_URL: ${{ secrets.VITE_AZURE_STORAGE_URL }}
     run: npm run build
 
   - name: Deploy to Azure Static Web Apps
