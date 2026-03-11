@@ -33,7 +33,7 @@ steps:
 
   - name: Build project
     env:
-    VITE_AZURE_STORAGE_URL: ${{ secrets.VITE_AZURE_STORAGE_URL }}
+    VITE_AZURE_STORAGE_URL: ${{vars.VITE_AZURE_STORAGE_URL}}
     run: npm run build
 
   - name: Deploy to Azure Static Web Apps
@@ -56,3 +56,4 @@ steps:
 uses: Azure/static-web-apps-deploy@v1
 with:
 action: "close"
+
