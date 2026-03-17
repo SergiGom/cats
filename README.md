@@ -1,22 +1,118 @@
-<<<<<<< HEAD
-# React + Vite
+#  Proyecto Cats Gallery
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+##  Descripción
 
-Currently, two official plugins are available:
+Aplicación web desarrollada con React que permite visualizar contenido multimedia (imágenes, PDFs y videos) almacenado en Azure Storage.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+##  Arquitectura
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+El proyecto está estructurado en **capas (layers)**:
 
-## Expanding the ESLint configuration
+### Presentation Layer
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
+Encargada de la interfaz de usuario.
 
+* React + Vite + Tailwind
+* Componentes:
 
-# cats
->>>>>>> 6399b6a958b1bc805f697efb9fed1c1c781eeefb
+  * catCard.jsx
+  * catDetails.jsx
+* Páginas:
+
+  * Gallery.jsx
+
+---
+
+### Application Layer
+
+Contiene la lógica de la aplicación.
+
+* Hooks:
+
+  * useCats.js → maneja estado y lógica de consumo
+* Services:
+
+  * catService.js → acceso a datos
+
+---
+
+### Data Layer
+
+Encargada del almacenamiento.
+
+* Azure Storage Account:
+
+  * imágenes
+  * PDFs
+  * videos
+
+---
+
+##  Flujo de datos
+
+Usuario → UI → Hooks → Services → Azure Storage
+
+---
+
+##  Patrones utilizados
+
+* **Separación por capas**
+
+  * Divide responsabilidades entre UI, lógica y datos
+
+* **Custom Hooks**
+
+  * Encapsulan lógica reutilizable
+
+* **Service Layer**
+
+  * Centraliza el acceso a datos
+
+---
+
+##  Principios SOLID aplicados
+
+* **Single Responsibility Principle**
+
+  * Cada archivo tiene una única responsabilidad
+
+* **Open/Closed Principle**
+
+  * Se pueden agregar nuevos servicios sin modificar la UI
+
+* **Dependency Inversion**
+
+  * La UI depende de hooks, no directamente de servicios
+
+---
+
+## CI/CD
+
+El proyecto utiliza GitHub para control de versiones y despliegue en Azure:
+
+* **CI (Integración continua)**
+
+  * Validación de código y build
+
+* **CD (Despliegue continuo)**
+
+  * Publicación automática en Azure Web App
+
+---
+
+## Tecnologías
+
+* React
+* Vite
+* TailwindCSS
+* Azure Storage
+* GitHub
+
+---
+
+## 📌 Conclusión
+
+El proyecto implementa una arquitectura por capas que permite escalabilidad, mantenimiento y separación clara de responsabilidades.
+
