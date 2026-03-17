@@ -1,48 +1,51 @@
-#  Proyecto Cats Gallery
+# Proyecto Cats Gallery
 
-##  Descripción
+## Descripción
 
-Aplicación web desarrollada con React que permite visualizar contenido multimedia (imágenes, PDFs y videos) almacenado en Azure Storage.
+Esta es una aplicación web hecha con React que permite visualizar contenido multimedia (imágenes, PDFs y videos) almacenado en Azure Storage. La idea principal es mostrar una galería sencilla donde el usuario pueda explorar este contenido.
 
 ---
 
-##  Arquitectura
+## Estructura del proyecto
 
-El proyecto está estructurado en **capas (layers)**:
+El proyecto está organizado en diferentes capas para separar responsabilidades y mantener el código más ordenado.
 
 ### Presentation Layer
 
-Encargada de la interfaz de usuario.
+Aquí está todo lo relacionado con la interfaz:
 
 * React + Vite + Tailwind
-* Componentes:
+* Componentes como:
 
   * catCard.jsx
   * catDetails.jsx
-* Páginas:
+* Página principal:
 
   * Gallery.jsx
+
+Esta capa solo se encarga de mostrar la información al usuario.
 
 ---
 
 ### Application Layer
 
-Contiene la lógica de la aplicación.
+Aquí se maneja la lógica de la aplicación:
 
-* Hooks:
+* useCats.js
+  Se encarga de manejar el estado y consumir los datos
 
-  * useCats.js → maneja estado y lógica de consumo
-* Services:
+* catService.js
+  Se encarga de traer la información desde Azure
 
-  * catService.js → acceso a datos
+Esta capa conecta la interfaz con los datos.
 
 ---
 
 ### Data Layer
 
-Encargada del almacenamiento.
+Aquí está el almacenamiento:
 
-* Azure Storage Account:
+* Azure Storage Account
 
   * imágenes
   * PDFs
@@ -50,69 +53,59 @@ Encargada del almacenamiento.
 
 ---
 
-##  Flujo de datos
+## Flujo de la aplicación
 
-Usuario → UI → Hooks → Services → Azure Storage
+El flujo es bastante directo:
 
----
-
-##  Patrones utilizados
-
-* **Separación por capas**
-
-  * Divide responsabilidades entre UI, lógica y datos
-
-* **Custom Hooks**
-
-  * Encapsulan lógica reutilizable
-
-* **Service Layer**
-
-  * Centraliza el acceso a datos
+Usuario → Interfaz → Hook → Servicio → Azure Storage
 
 ---
 
-##  Principios SOLID aplicados
+## Decisiones de diseño
 
-* **Single Responsibility Principle**
+Se separó el código en capas para que cada parte tenga una responsabilidad clara.
+Por ejemplo:
 
-  * Cada archivo tiene una única responsabilidad
+* Los componentes solo muestran datos
+* Los hooks manejan lógica
+* Los servicios acceden a los datos
 
-* **Open/Closed Principle**
+Esto hace que el proyecto sea más fácil de mantener y entender.
 
-  * Se pueden agregar nuevos servicios sin modificar la UI
+---
 
-* **Dependency Inversion**
+## Principios aplicados
 
-  * La UI depende de hooks, no directamente de servicios
+No es una implementación estricta de SOLID, pero sí se aplican algunas ideas:
+
+* Cada archivo tiene una responsabilidad específica
+* La UI no accede directamente a los datos
+* La lógica está separada de la presentación
 
 ---
 
 ## CI/CD
 
-El proyecto utiliza GitHub para control de versiones y despliegue en Azure:
+El proyecto se maneja con GitHub y se desplegó en Azure.
 
-* **CI (Integración continua)**
+* Se usa Git para control de versiones
+* El despliegue se realiza hacia Azure Web App
 
-  * Validación de código y build
-
-* **CD (Despliegue continuo)**
-
-  * Publicación automática en Azure Web App
+(No hay un pipeline complejo, pero se sigue un flujo básico de integración y despliegue)
 
 ---
 
-## Tecnologías
+## Tecnologías usadas
 
 * React
 * Vite
-* TailwindCSS
+* Tailwind CSS
 * Azure Storage
 * GitHub
 
 ---
 
-## 📌 Conclusión
+## Comentario final
 
-El proyecto implementa una arquitectura por capas que permite escalabilidad, mantenimiento y separación clara de responsabilidades.
-
+El proyecto está pensado como una base sencilla pero organizada.
+Aunque es una aplicación pequeña, se intentó mantener una estructura que permita escalar o agregar nuevas funcionalidades sin desordenar el código.
